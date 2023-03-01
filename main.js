@@ -4,6 +4,8 @@ import * as THREE from 'three';
 /***************************************************** Scene */
 
 const scene = new THREE.Scene();
+// Add fog into scene
+scene.fog = new THREE.FogExp2(0x11111f, 0.002);
 
 /***************************************************** Camera */
 
@@ -54,3 +56,15 @@ window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight); // update size
   renderer.setPixelRatio(window.devicePixelRatio); // use to render at the native screen resolution
 });
+
+/***************************************************** Render */
+
+// Render animation on every rendering phase
+function render() {
+  // rerender every time the page refreshes (pause when on another tab)
+  requestAnimationFrame(render);
+
+  renderer.render(scene, camera);
+}
+
+render();
