@@ -143,7 +143,7 @@ for(let p=0; p<25; p++) {
   cloud3.rotation.x = 1.16;
   cloud3.rotation.y = -0.12;
   cloud3.rotation.z = Math.random()*360; //Math.random()*2*Math.PI;
-  cloud3.material.opacity = 0.8;
+  cloud3.material.opacity = 1;
 
   cloudParticles3.push(cloud3);
   
@@ -156,15 +156,15 @@ for(let p=0; p<25; p++) {
 function render() {
   // Cloud Rotation Animation: In the array of clouds rotate the cloud one by one
   cloudParticles1.forEach(p => {
-    p.rotation.z -= 0.0004;
+    p.rotation.z -= 0.0003;
   });
 
   cloudParticles2.forEach(p => {
-    p.rotation.z -=0.0006;
+    p.rotation.z -=0.0004;
   });
 
   cloudParticles3.forEach(p => {
-    p.rotation.z -=0.0008;
+    p.rotation.z -=0.0005;
   });
 
   // rerender every time the page refreshes (pause when on another tab)
