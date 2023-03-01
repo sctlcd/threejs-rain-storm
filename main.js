@@ -34,3 +34,23 @@ const directionalLight = new THREE.DirectionalLight(0xffeedd);
 // By default, the light will seems to come from above. To change he position light, I must move the whole light
 directionalLight.position.set(0,0,1);
 scene.add(directionalLight);
+
+/***************************************************** Renderer */
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setClearColor(scene.fog.color);
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+// Add renderer into HTML as a canvas element
+document.body.appendChild( renderer.domElement);
+
+/***************************************************** Resizer */
+
+// Make canvas responsive
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight; // update aspect ratio
+  camera.updateProjectionMatrix(); // apply changes
+
+  renderer.setSize(window.innerWidth, window.innerHeight); // update size
+  renderer.setPixelRatio(window.devicePixelRatio); // use to render at the native screen resolution
+});
