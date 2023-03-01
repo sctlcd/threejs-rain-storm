@@ -14,7 +14,7 @@ const camera = new THREE.PerspectiveCamera(
   60, // fov = Field Of View
   window.innerWidth / window.innerHeight, // aspect ratio = width / height
   1, // near clipping plane
-  1000, // far clipping plane
+  800, // far clipping plane
 );
 
 // Set camera position
@@ -61,15 +61,15 @@ window.addEventListener('resize', () => {
 
 const loader = new THREE.TextureLoader();
 // Set Texture loader
-const texture1 = loader.load("./images/textures/PngItem_787263.png");
-const texture2 = loader.load("./images/textures/PngItem_5113750.png");
-const texture3 = loader.load("./images/textures/PngItem_313863.png");
+const texture1 = loader.load("./images/textures/smoke-min.png");
+const texture2 = loader.load("./images/textures/toppng.com-smoke-white-smoke-png-for-picsart-380x580-min.png");
+const texture3 = loader.load("./images/textures/colored-smoke-png-43277-min.png");
 
 /************************************** Cloud 1 */
 
 const cloudParticles1 = [];
 // Define a geometry - 2000 unit plain square
-const cloudGeometry1 = new THREE.PlaneBufferGeometry(1500, 1500);
+const cloudGeometry1 = new THREE.PlaneBufferGeometry(500, 500);
 // Define a material and map it to the texture 1 
 const cloudMaterial1 = new THREE.MeshLambertMaterial({
   map: texture1,
@@ -101,7 +101,7 @@ for(let p=0; p<25; p++) {
 /************************************** Cloud 2 */
 
 const cloudParticles2 = [];
-const cloudGeometry2 = new THREE.PlaneBufferGeometry(2000,2000);
+const cloudGeometry2 = new THREE.PlaneBufferGeometry(500, 500);
 const cloudMaterial2 = new THREE.MeshLambertMaterial({
   map: texture2,
   transparent: true
@@ -127,7 +127,7 @@ for(let p=0; p<25; p++) {
 /************************************** Cloud 3 */
 
 const cloudParticles3 = [];
-const cloudGeometry3 = new THREE.PlaneBufferGeometry(2000,2000);
+const cloudGeometry3 = new THREE.PlaneBufferGeometry(500,500);
 const cloudMaterial3 = new THREE.MeshLambertMaterial({
   map: texture3,
   transparent: true
@@ -154,6 +154,19 @@ for(let p=0; p<25; p++) {
 
 // Render animation on every rendering phase
 function render() {
+  // Cloud Rotation Animation: In the array of clouds rotate the cloud one by one
+  cloudParticles1.forEach(p => {
+    p.rotation.z -= 0.0004;
+  });
+
+  cloudParticles2.forEach(p => {
+    p.rotation.z -=0.0002;
+  });
+
+  cloudParticles3.forEach(p => {
+    p.rotation.z -=0.0003;
+  });
+
   // rerender every time the page refreshes (pause when on another tab)
   requestAnimationFrame(render);
 
