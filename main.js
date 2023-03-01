@@ -11,14 +11,14 @@ scene.fog = new THREE.FogExp2(0x11111f, 0.002);
 
 // Define camera: .PerspectiveCamera(field of view in degree, aspect ratio = width / height, near, far) 
 const camera = new THREE.PerspectiveCamera(
-  60, // fov = Field Of View
+  80, // fov = Field Of View
   window.innerWidth / window.innerHeight, // aspect ratio = width / height
   1, // near clipping plane
   800, // far clipping plane
 );
 
 // Set camera position
-camera.position.set(0, 0, 1);
+camera.position.set(0, 20, 50);
 
 // Set the rotation angle of the camera to look up into the sky
 camera.rotation.set(1.16, -0.12, 0.27);
@@ -69,7 +69,7 @@ const texture3 = loader.load("./images/textures/colored-smoke-png-43277-min.png"
 
 const cloudParticles1 = [];
 // Define a geometry - 2000 unit plain square
-const cloudGeometry1 = new THREE.PlaneBufferGeometry(500, 500);
+const cloudGeometry1 = new THREE.PlaneBufferGeometry(1000, 1000);
 // Define a material and map it to the texture 1 
 const cloudMaterial1 = new THREE.MeshLambertMaterial({
   map: texture1,
@@ -127,7 +127,7 @@ for(let p=0; p<25; p++) {
 /************************************** Cloud 3 */
 
 const cloudParticles3 = [];
-const cloudGeometry3 = new THREE.PlaneBufferGeometry(500,500);
+const cloudGeometry3 = new THREE.PlaneBufferGeometry(1000,1000);
 const cloudMaterial3 = new THREE.MeshLambertMaterial({
   map: texture3,
   transparent: true
@@ -160,11 +160,11 @@ function render() {
   });
 
   cloudParticles2.forEach(p => {
-    p.rotation.z -=0.0002;
+    p.rotation.z -=0.0006;
   });
 
   cloudParticles3.forEach(p => {
-    p.rotation.z -=0.0003;
+    p.rotation.z -=0.0008;
   });
 
   // rerender every time the page refreshes (pause when on another tab)
