@@ -57,6 +57,99 @@ window.addEventListener('resize', () => {
   renderer.setPixelRatio(window.devicePixelRatio); // use to render at the native screen resolution
 });
 
+/***************************************************** Cloud Texture Loader */
+
+const loader = new THREE.TextureLoader();
+// Set Texture loader
+const texture1 = loader.load("./images/textures/PngItem_787263.png");
+const texture2 = loader.load("./images/textures/PngItem_5113750.png");
+const texture3 = loader.load("./images/textures/PngItem_313863.png");
+
+/************************************** Cloud 1 */
+
+const cloudParticles1 = [];
+// Define a geometry - 2000 unit plain square
+const cloudGeometry1 = new THREE.PlaneBufferGeometry(1500, 1500);
+// Define a material and map it to the texture 1 
+const cloudMaterial1 = new THREE.MeshLambertMaterial({
+  map: texture1,
+  transparent: true
+});
+
+// Loop to randomly add each cloud to the scene
+for(let p=0; p<25; p++) {
+  const cloud1 = new THREE.Mesh(cloudGeometry1, cloudMaterial1);
+  cloud1.position.set(
+    Math.random()*800 -400,
+    500,
+    Math.random()*500 - 450
+  );
+  // Set the cloud rotation angle to face the camera
+  cloud1.rotation.x = 1.16;
+  cloud1.rotation.y = -0.12;
+  // Add some random around the z axis
+  cloud1.rotation.z = Math.random()*360;
+  cloud1.material.opacity = 0.8;
+
+  // Store the reference to each cloud in an array
+  cloudParticles1.push(cloud1);
+  
+  // Add Cloud1 into scene
+  scene.add(cloud1);
+}
+
+/************************************** Cloud 2 */
+
+const cloudParticles2 = [];
+const cloudGeometry2 = new THREE.PlaneBufferGeometry(2000,2000);
+const cloudMaterial2 = new THREE.MeshLambertMaterial({
+  map: texture2,
+  transparent: true
+});
+
+for(let p=0; p<25; p++) {
+  const cloud2 = new THREE.Mesh(cloudGeometry2, cloudMaterial2);
+  cloud2.position.set(
+    Math.random()*800 -400,
+    500,
+    Math.random()*500 - 450
+  );
+  cloud2.rotation.x = 1.16;
+  cloud2.rotation.y = -0.12;
+  cloud2.rotation.z = Math.random()*360;
+  cloud2.material.opacity = 0.6;
+
+  cloudParticles2.push(cloud2);
+  
+  scene.add(cloud2);
+}
+
+/************************************** Cloud 3 */
+
+const cloudParticles3 = [];
+const cloudGeometry3 = new THREE.PlaneBufferGeometry(2000,2000);
+const cloudMaterial3 = new THREE.MeshLambertMaterial({
+  map: texture3,
+  transparent: true
+});
+
+for(let p=0; p<25; p++) {
+  const cloud3 = new THREE.Mesh(cloudGeometry3, cloudMaterial3);
+  cloud3.position.set(
+    Math.random()*800 -400,
+    500,
+    Math.random()*500 - 450
+  );
+  cloud3.rotation.x = 1.16;
+  cloud3.rotation.y = -0.12;
+  cloud3.rotation.z = Math.random()*360; //Math.random()*2*Math.PI;
+  cloud3.material.opacity = 0.8;
+
+  cloudParticles3.push(cloud3);
+  
+  scene.add(cloud3);
+}
+
 /***************************************************** Render */
 
 // Render animation on every rendering phase
