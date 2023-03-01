@@ -21,3 +21,16 @@ camera.position.set(0, 0, 1);
 // Set the rotation angle of the camera to look up into the sky
 camera.rotation.set(1.16, -0.12, 0.27);
 
+/***************************************************** Ambient Light */
+
+// Define ambiant light: Illuminate all objects in the scene from all direction
+const ambient = new THREE.AmbientLight(0x555555);
+scene.add(ambient);
+
+/***************************************************** Directional Light */
+
+// Define directional light: reresent the moon light in the sky
+const directionalLight = new THREE.DirectionalLight(0xffeedd);
+// By default, the light will seems to come from above. To change he position light, I must move the whole light
+directionalLight.position.set(0,0,1);
+scene.add(directionalLight);
