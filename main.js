@@ -1,31 +1,23 @@
 import './assets/style/style.css';
 import * as THREE from 'three';
 
-// init
-
-const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
-camera.position.z = 1;
+/***************************************************** Scene */
 
 const scene = new THREE.Scene();
 
-const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
-const material = new THREE.MeshNormalMaterial();
+/***************************************************** Camera */
 
-const mesh = new THREE.Mesh( geometry, material );
-scene.add( mesh );
+// Define camera: .PerspectiveCamera(field of view in degree, aspect ratio = width / height, near, far) 
+const camera = new THREE.PerspectiveCamera(
+  60, // fov = Field Of View
+  window.innerWidth / window.innerHeight, // aspect ratio = width / height
+  1, // near clipping plane
+  1000, // far clipping plane
+);
 
-const renderer = new THREE.WebGLRenderer( { antialias: true } );
-renderer.setSize( window.innerWidth, window.innerHeight );
-renderer.setAnimationLoop( animation );
-document.body.appendChild( renderer.domElement );
+// Set camera position
+camera.position.set(0, 0, 1);
 
-// animation
+// Set the rotation angle of the camera to look up into the sky
+camera.rotation.set(1.16, -0.12, 0.27);
 
-function animation( time ) {
-
-	mesh.rotation.x = time / 2000;
-	mesh.rotation.y = time / 1000;
-
-	renderer.render( scene, camera );
-
-}
