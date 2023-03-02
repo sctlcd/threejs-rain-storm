@@ -129,11 +129,6 @@ for(let p=0; p<50; p++) {
 /************************************** Cloud 2 */
 
 const cloudParticles2 = [];
-// const cloudGeometry2 = new THREE.PlaneBufferGeometry(2700, 2700);
-// const cloudMaterial2 = new THREE.MeshLambertMaterial({
-//   map: texture2,
-//   transparent: true
-// });
 
 for(let p=0; p<50; p++) {
   const cloud2 = new THREE.Mesh(cloudGeometry1, cloudMaterial1);
