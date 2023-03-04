@@ -13,7 +13,7 @@ scene.fog = new THREE.FogExp2(0x11111f, 0.002);
 const camera = new THREE.PerspectiveCamera(
   100, // fov = Field Of View
   window.innerWidth / window.innerHeight, // aspect ratio = width / height
-  1, // near clipping plane
+  60, // near clipping plane
   800, // far clipping plane
 );
 
@@ -78,7 +78,7 @@ for( let i = 0; i < rainCount; i++ ) {
 
 const rainMaterial = new THREE.PointsMaterial({
   color: 0xaaaaaa,
-  size: 0.1,
+  size: 0.3,
   transparent: true,
   precision: "highp"
 })
@@ -192,7 +192,7 @@ function render() {
 
   // Rain drop animation: Move each drop and increase the velocity to simulate the gravity. 
   rainGeo.vertices.forEach(p => {
-    p.velocity -= 2 * Math.random() * 1.5;
+    p.velocity -= Math.random();
     p.y += p.velocity;
     if(p.y < -200){
       p.y = 200;
@@ -202,7 +202,7 @@ function render() {
   // Reset the position if vertices are outside the screen.
   rainGeo.verticesNeedUpdate = true;
   // Rotation to the rain object to create a cinematic effect.
-  rain.rotation.y += 0.003;
+  rain.rotation.y += 0.002;
 
   // rerender every time the page refreshes (pause when on another tab)
   requestAnimationFrame(render);
